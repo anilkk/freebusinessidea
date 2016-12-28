@@ -1,7 +1,34 @@
+html, body {
+	height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
 .container {
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
+    min-height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#problem,
+#solutionOne {
+    flex: 1;
+    color: #ffffff;
+    font-size: 36px;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+}
+
+#problem {
+    background-color: #DB3832;
+}
+
+#solutionOne {
+    background-color: #54913C;
 }

@@ -3,8 +3,33 @@
     var IdeaGenerator = {
 
         init: function(config) {
-            this.data = config[0];
-            this.attachDomEvent();
+            this.data = config || {};
+            this.problemDOM = document.querySelector('#problem');
+            this.solutionOneDOM = document.querySelector('#solutionOne');
+            this.solutionTwoDOM = document.querySelector('#solutionTwo');
+            this.getData();
+        },
+        getData: function() {
+            this.getProblemsData()
+                .then(function(data) {
+                    IdeaGenerator.data.problems = data;
+                    return IdeaGenerator.getSolutionsData();
+                })
+                .then(function(data) {
+                    IdeaGenerator.data.solutions = data;
+                    IdeaGenerator.attachDomEvent();
+                    IdeaGenerator.showResult();
+                })
+                .then(null, function(data) {
+                    console.log('something went wrong', data);
+                    throw new Error('something went wrong');
+                });
+        },
+        getProblemsData: function() {
+            return this.getJSON('problems.json');
+        },
+        getSolutionsData: function() {
+            return this.getJSON('solutions.json');
         },
         getRandomProblem: function() {
             return this.getRandomItemFromArray(this.data.problems);
@@ -13,20 +38,36 @@
             return this.getRandomItemFromArray(this.data.solutions);
         },
         attachDomEvent: function() {
-            console.log('random', this.getRandomProblem(), this.getRandomSolution());
+            document.addEventListener('click', function ($event) {
+            	IdeaGenerator.showResult();
+            });
+        },
+        showResult: function () {
+        	this.problemDOM.innerHTML = '<h1>' + this.getRandomProblem() + '</h1>';
+        	this.solutionOneDOM.innerHTML = '<h1>' + this.getRandomSolution() + '</h1>';
         },
         getRandomItemFromArray: function(array) {
             var numberOfItems = array.length;
 
             return array[Math.floor(Math.random() * numberOfItems)];
+        },
+        getJSON: function(url) {
+            var xhr = new XMLHttpRequest();
+            return new Promise(function(resolve, reject) {
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            resolve(JSON.parse(xhr.responseText));
+                        } else {
+                            reject(xhr.responseText);
+                        }
+                    }
+                };
+                xhr.open('GET', url);
+                xhr.send();
+            });
         }
     };
 
-
-    var data = [{
-        problems: ['food', 'tarvel', 'fashion'],
-        solutions: ['twitter', 'facebook', 'LinkedIn']
-    }];
-
-    IdeaGenerator.init(data);
+    IdeaGenerator.init();
 })();
