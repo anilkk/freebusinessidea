@@ -49,7 +49,7 @@
         getSolutionHTML: function () {
             var solution = this.getRandomSolution();
             return '<a href="https://' + solution +  '.com" target="_blank">' +
-                         '<img src="'+ location.origin + location.pathname.slice(0, -11) +'/src/img/' + solution +'.png">' +
+                         '<img src="'+ location.origin + location.pathname.slice(0, -11) +'/src/img/' + solution.toLowerCase() +'.png">' +
                    '</a>' + 
                    '<br>' +
                    '<h1>' + this.getRandomSolution() + '</h1>';
