@@ -26,10 +26,10 @@
                 });
         },
         getProblemsData: function() {
-            return this.getJSON('problems.json');
+            return this.getJSON('src/data/problems.json');
         },
         getSolutionsData: function() {
-            return this.getJSON('solutions.json');
+            return this.getJSON('src/data/solutions.json');
         },
         getRandomProblem: function() {
             return this.getRandomItemFromArray(this.data.problems);
@@ -44,7 +44,15 @@
         },
         showResult: function () {
         	this.problemDOM.innerHTML = '<h1>' + this.getRandomProblem() + '</h1>';
-        	this.solutionOneDOM.innerHTML = '<h1>' + this.getRandomSolution() + '</h1>';
+        	this.solutionOneDOM.innerHTML = this.getSolutionHTML();
+        },
+        getSolutionHTML: function () {
+            var solution = this.getRandomSolution();
+            return '<a href="https://' + solution +  '.com" target="_blank">' +
+                         '<img src="src/img/' + solution +'.png">' +
+                   '</a>' + 
+                   '<br>' +
+                   '<h1>' + this.getRandomSolution() + '</h1>';
         },
         getRandomItemFromArray: function(array) {
             var numberOfItems = array.length;
