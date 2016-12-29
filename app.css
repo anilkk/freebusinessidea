@@ -6,12 +6,14 @@ body {
     padding: 0;
     margin: 0;
     font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
-    min-height: 100%;
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 
 #problem,
@@ -23,6 +25,8 @@ body {
     flex-direction: column;
     justify-content: center;
     display: flex;
+    cursor: pointer;
+    user-select: none;
 }
 
 #problem {
@@ -31,4 +35,14 @@ body {
 
 #solutionOne {
     background-color: #54913C;
+}
+
+footer {
+    color: #ffffff;
+    background-color: #605E4C;
+    padding: 5px;
+    text-align: right;
+}
+.social-link, .social-link:hover, .social-link:visited {
+    color: #5cbeff;
 }
