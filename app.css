@@ -1,5 +1,6 @@
-html, body {
-	height: 100%;
+html,
+body {
+    height: 100%;
 }
 
 body {
@@ -43,6 +44,15 @@ footer {
     padding: 5px;
     text-align: right;
 }
-.social-link, .social-link:hover, .social-link:visited {
+
+.social-link,
+.social-link:hover,
+.social-link:visited {
     color: #5cbeff;
+}
+
+@media screen and (max-width: 778px) {
+    .container {
+        flex-direction: column;
+    }
 }
