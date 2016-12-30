@@ -52,7 +52,7 @@
                          '<img src="'+ location.origin + location.pathname.slice(0, -11) +'/src/img/' + solution.toLowerCase() +'.png">' +
                    '</a>' + 
                    '<br>' +
-                   '<h1>' + this.getRandomSolution() + '</h1>';
+                   '<h1>' + solution + '</h1>';
         },
         getRandomItemFromArray: function(array) {
             var numberOfItems = array.length;
